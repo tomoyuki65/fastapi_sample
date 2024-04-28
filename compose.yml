@@ -1,0 +1,13 @@
+services:
+  api:
+    container_name: fastapi_sample
+    build:
+      context: .
+      dockerfile: ./docker/python/local/Dockerfile
+    volumes:
+      - ./src:/code/src
+    ports:
+      - "9004:9004"
+    tty: true
+    stdin_open: true
+    command: poetry run uvicorn main:app --reload --host 0.0.0.0 --port 9004
