@@ -68,6 +68,7 @@ def run_migrations_online() -> None:
     """
 
     # 環境変数の設定
+    # DRIVERは「mysql+pymysql」を使う
     config.set_section_option("alembic", "DRIVER", "mysql+pymysql")
     config.set_section_option("alembic", "USER", src_config.settings.mysql_user)
     config.set_section_option("alembic", "PASSWORD", src_config.settings.mysql_password)

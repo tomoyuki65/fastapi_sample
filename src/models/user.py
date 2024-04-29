@@ -13,6 +13,7 @@ from database import Base
 
 class User(Base):
     __tablename__ = "users"
+    # 複合ユニークキーはUniqueConstraintを使う
     __table_args__ = (UniqueConstraint('email','deleted_at'),{})
 
     id = Column(BigInteger, primary_key=True, autoincrement=True)
@@ -26,9 +27,9 @@ class User(Base):
 @event.listens_for(Session, "do_orm_execute")
 def _add_filtering_deleted_at(execute_state):
     """
-    論理削除用のfilterを自動的に適用する
-    以下のようにすると、論理削除済のデータも含めて取得可能
-    query(...).filter(...).execution_options(include_deleted=True)
+    論理削除用のfilterを自動的に適用
+    論理削除データを取得したい場合は以下を使う
+    db.execute().select().filter().execution_options(include_deleted=True)
     """
     if (
         execute_state.is_select

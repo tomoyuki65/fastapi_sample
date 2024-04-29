@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 # ルーターのインポート
 from routers import sample
+from routers import user
 # コンフィグのインポート
 import config
 
@@ -9,6 +10,7 @@ app = FastAPI()
 
 # ルーティング追加
 app.include_router(sample.router)
+app.include_router(user.router)
 
 @app.get("/")
 def root():
