@@ -5,6 +5,7 @@ from routers import sample
 from routers import user
 # コンフィグのインポート
 import config
+from database import get_db
 
 app = FastAPI()
 

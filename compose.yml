@@ -14,6 +14,7 @@ services:
       - ./.env
     depends_on:
         - db
+        - test-db
     command: poetry run uvicorn main:app --reload --host 0.0.0.0 --port 9004
   # DBに関する設定
   db:
@@ -25,3 +26,15 @@ services:
       - 3306:3306
     volumes:
       - ./tmp/db:/var/lib/mysql
+  # テスト用DB
+  test-db:
+    container_name: test_fastapi_sample_db
+    image: mysql:8.0.36
+    env_file:
+      - ./.env_testing
+    ports:
+      - 3307:3307
+    expose:
+      - 3307
+    tmpfs:
+      - /var/lib/mysql

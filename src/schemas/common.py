@@ -1,19 +1,79 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 class OK(BaseModel):
-    message: str = Field(example="OK")
+    message: str
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "message": "OK",
+                }
+            ]
+        }
+    }
 
 class Created(BaseModel):
-    message: str = Field(example="Created")
+    message: str
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "message": "Created",
+                }
+            ]
+        }
+    }
 
 class BadRequest(BaseModel):
-    message: str = Field(example="Bad Request")
+    message: str
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "message": "Bad Request",
+                }
+            ]
+        }
+    }
 
 class Unauthorized(BaseModel):
-    message: str = Field(example="Unauthorized")
+    message: str
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "message": "Unauthorized",
+                }
+            ]
+        }
+    }
 
 class NotFound(BaseModel):
-    message: str = Field(example="Not Found")
+    message: str
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "message": "Not Found",
+                }
+            ]
+        }
+    }
 
 class InternalServerError(BaseModel):
-    message: str = Field(example="Internal Server Error")
+    message: str
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "message": "Internal Server Error",
+                }
+            ]
+        }
+    }

@@ -1,4 +1,14 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 class SampleStr(BaseModel):
-    message: str = Field(example="メッセージ")
+    message: str
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "message": "メッセージ",
+                }
+            ]
+        }
+    }
